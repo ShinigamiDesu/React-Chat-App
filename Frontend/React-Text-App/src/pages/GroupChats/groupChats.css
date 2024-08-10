@@ -1,0 +1,124 @@
+.groupChat-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 5px;
+    height: 100vh;
+}
+
+.group-separator {
+    height: 1px;
+    background-color: gray;
+    margin: 20px 15px; /* Adjust the margins to not touch the edges */
+}
+
+.group-title {
+    font-weight: 200;
+    color: gray;
+    font-size: 35px;
+    padding-left: 10px;
+    margin-bottom: -20px;
+}
+
+.group-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: calc(100vh - 90px);
+    padding-right: 10px; /* Adds padding to ensure the scrollbar doesn't overlap content */
+    row-gap: 20px;
+}
+
+.group-item {
+    display: flex;
+    background-color: #141414;
+    padding: 10px 20px; /* Adjusted padding */
+    margin-bottom: 10px; /* Added margin to separate items */
+    border-radius: 100px;
+    height: 150px;
+}
+
+.group-item-pfp {
+    height: 130px;
+    width: 130px;
+    border-radius: 80px;
+    border: 2px solid rgb(50,50,50);
+}
+
+.group-item-details-container {
+    color: white;
+    padding-top: 45px;
+    padding-left: 15px;
+    width: 100vh;
+}
+
+.group-item-username {
+    display: flex;
+    font-weight: 200;
+    font-size: 30px;
+}
+
+.group-item-members{
+    color: gray;
+    font-size: 25px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+
+.group-item-btn-open {
+    display: flex;
+    color: white;
+    background-color: #141414;
+    width: 240px;
+    height: 60px;
+    font-size: 30px;
+    font-weight: 200;
+    border: 1px solid gray;
+    border-radius: 100px;
+    padding-right: 10px;
+    cursor: pointer;
+    margin-top: 35px;
+    margin-left: 290px;
+    padding-left: 50px;
+}
+
+.group-item-btn-close {
+    display: flex;
+    color: white;
+    background-color: #141414;
+    width: 240px;
+    height: 60px;
+    font-size: 30px;
+    font-weight: 200;
+    border: 1px solid gray;
+    border-radius: 100px;
+    padding-right: 10px;
+    cursor: pointer;
+    margin-top: 35px;
+    margin-left: 460px;
+    padding-left: 50px;
+}
+
+.group-item-btn-icon{
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 45px;
+}
+
+.group-item-btnText{
+    padding-left: 20px;
+    padding-top: 7px;
+}
+
+.group-item-btn-open:hover {
+    background-color: rgb(50,50,50);
+    transition: 0.6s;
+    border: 1px solid white;
+}
+
+.group-item-btn-close:hover {
+    background-color: rgb(50,50,50);
+    transition: 0.6s;
+    border: 1px solid white;
+}

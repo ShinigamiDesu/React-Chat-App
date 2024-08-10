@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+@font-face {
+  font-family: snacker;
+  src: url('./fonts/snacker.ttf');
+}
+
+body {
+  background-color: rgb(30,30,30);
+}
+
+.sidebar-container {
+  display: flex;
+  position: fixed;
+  overflow: hidden;
+}
+
+main {
+  width: 100%;
+}
+
+.open-sidebar {
+  background-color: rgb(30,30,30);
+  color: white;
+  height: 100vh;
+  width: 260px; /* Added width for better layout */
+  border-right: 1px solid rgb(50,50,50);
+  transition: width 0.5s ease;
+}
+
+.close-sidebar {
+  background-color: rgb(30,30,30);
+  color: white;
+  height: 100vh;
+  width: 90px;
+  border-right: 1px solid rgb(50,50,50);
+  transition: width 0.5s ease;
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-family: snacker;
+  font-size: 40px;
+  margin-right: 15px; /* Adjust margin to align with bars */
+}
+
+.none {
+  display: none;
+}
+
+.open-bars {
+  display: flex;
+  height: 30px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.close-bars {
+  display: flex;
+  height: 30px;
+  margin-left: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.item-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 15px 20px;
+  gap: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 30px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.item-link:hover {
+  background-color: rgb(50,50,50);
+  transition: 0.5s;
+}
+
+.item-icon {
+  width: 24px;
+  height: 24px; /* Ensure the icon size is consistent */
+}
+
+.item-text-open {
+  font-weight: 200;
+  font-size: 16px;
+}
+
+.item-text-close {
+  display: none;
+  opacity: 0;
+}
+
+.active-item-link {
+  background-color: rgb(50,50,50);
+  display: flex;
+  align-items: center;
+  color: white;
+  padding: 15px 20px;
+  gap: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 30px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}
+
+.logout-item-open {
+  margin-top: 490px;
+}
+
+.logout-item-close {
+  margin-top: 490px; /* Use auto to push it to the bottom */
+}
+
+
