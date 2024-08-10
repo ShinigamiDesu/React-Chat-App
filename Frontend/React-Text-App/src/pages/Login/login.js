@@ -9,6 +9,10 @@ const Login = () => {
         navigate('/');
     };
 
+    const handleSignup = () => {
+        navigate('/signup');
+      };
+
     return (
         <div>
             <div className="title-container">
@@ -27,7 +31,7 @@ const Login = () => {
                     <div className="login-separator"></div>
                     <div className="sign-container">
                         <p className="sign1">Dont Have An Account?</p>
-                        <p id="SignUp" className="sign2">Sign Up Now!</p>
+                        <p id="SignUp" className="sign2" onClick={handleSignup}>Sign Up Now!</p>
                     </div>
                 </div>
             </div>

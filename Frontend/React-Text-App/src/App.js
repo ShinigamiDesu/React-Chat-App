@@ -7,6 +7,7 @@ import Login from './pages/Login/login';
 import FriendRequests from './pages/FriendRequests/friendsRequests';
 import GroupChats from './pages/GroupChats/groupChats';
 import Search from './pages/SearchUser/searchUser';
+import SignUp from './pages/SignUp/SignUp';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                     element={<Sidebar><Search /></Sidebar>}
                 />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
             </Routes>
         </BrowserRouter>
     );

@@ -1,0 +1,144 @@
+.title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.signup-separator {
+    height: 1px;
+    background-color: gray;
+    margin: 20px 15px;
+}
+
+.welcome{
+    font-weight: 200;
+    font-size: 50px;
+    color: gray;
+    padding-top: 20px;
+}
+
+.mugiwara{
+    font-size: 120px;
+    font-family: snacker;
+    color: white;
+}
+
+.signup-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    background-color: #141414;
+    height: 650px;
+    width: 600px;
+    border-radius: 70px;
+}
+
+.signup-title{
+    font-size: 70px;
+    font-family: snacker;
+    color: white;
+    align-self: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.signup-username-title{
+    font-weight: 200;
+    color: gray;
+    padding-left: 60px;
+    padding-bottom: 5px;
+}
+
+.signup-username{
+    border-radius: 100px;
+    height: 50px;
+    width:  500px;
+    background-color: rgb(50,50,50);
+    align-self: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    padding-left: 15px;
+    border: 1px solid gray;
+    color: white;
+    font-weight: 100;
+}
+
+.signup-password-title{
+    font-weight: 200;
+    color: gray;
+    padding-left: 60px;
+    padding-bottom: 5px;
+}
+
+.signup-password{
+    border-radius: 100px;
+    height: 50px;
+    width:  500px;
+    background-color: rgb(50,50,50);
+    align-self: center;
+    border: 1px solid gray;
+    color: white;
+    font-size: 30px;
+    padding-left: 15px;
+    font-weight: 100;
+}
+
+.signup-btn{
+    border-radius: 100px;
+    height: 50px;
+    width:  300px;
+    align-self: center;
+    cursor: pointer;
+    font-size: 40px;
+    font-family: snacker;
+    background-color: black;
+    color: white;
+    border: 1px solid gray;
+    margin-top: 30px;
+}
+
+.sign-container{
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    padding-top: 15px;
+    
+}
+
+.login1{
+    color: white;
+    font-weight: 200;
+    font-size: 15px;
+}
+
+.login2{
+    color: gray;
+    font-weight: 200;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.login2:hover{
+    transition-duration: 500ms;
+    color:white;
+}
+
+.IMG{
+    height: 140px;
+    width: 140px;
+    align-self: center;
+}
+
+.pfp-input{
+    align-self: center;
+    padding-left: 190px;
+    color: white;
+    font-weight: 200;
+}
