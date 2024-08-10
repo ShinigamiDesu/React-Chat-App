@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "bbd206f4-e72c-49fe-a10e-beaae487c7ed": {
+      "ProjectGuid": "bbd206f4-e72c-49fe-a10e-beaae487c7ed",
+      "DisplayName": "ReactBackend",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
