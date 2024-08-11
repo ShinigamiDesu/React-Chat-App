@@ -4,7 +4,9 @@ import img from '../../assets/img.png';
 import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
-  const [image, setImage] = useState(null); // Set initial state to null
+  const [image, setImage] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -12,7 +14,36 @@ function SignUp() {
   };
 
   const handleImageChange = (event) => {
-    setImage(event.target.files[0]); // Get the selected file
+    setImage(event.target.files[0]);
+  };
+
+  const handleSignUp = async () => {
+    const formData = new FormData();
+    formData.append('PFP', image);
+    formData.append('Username', username);
+    formData.append('Password', password);
+
+    try {
+      const response = await fetch('https://localhost:7245/api/registration/registration', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      console.log('Response:', response); // Log the response
+      const data = await response.text(); // Use text() instead of json() to capture any possible response content
+  
+      console.log('Data:', data); // Log the data
+  
+      if (response.ok) {
+        alert('Registration successful!');
+        navigate('/login');
+      } else {
+        alert(`Registration failed: ${data}`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Registration failed: Unable to connect to the server.');
+    }
   };
 
   return (
@@ -33,13 +64,23 @@ function SignUp() {
           <input
             className="pfp-input"
             type="file"
-            onChange={handleImageChange} // Use onChange to handle file selection
+            onChange={handleImageChange}
           />
           <h2 className="signup-username-title">Username</h2>
-          <input className="signup-username" type="text" />
+          <input
+            className="signup-username"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <h2 className="signup-password-title">Password</h2>
-          <input className="signup-password" type="password" />
-          <button className="signup-btn">Sign Up</button>
+          <input
+            className="signup-password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="signup-btn" onClick={handleSignUp}>Sign Up</button>
           <div className="signup-separator"></div>
           <div className="sign-container">
             <p className="login1">Already Have An Account?</p>
