@@ -11,8 +11,8 @@ const Login = () => {
     const handleLogin = async () => {
         // Create the login data object
         const loginData = {
-            username: username,
-            password: password
+            Username: username,
+            Password: password
         };
 
         try {
@@ -28,13 +28,14 @@ const Login = () => {
             // Handle the response
             if (response.ok) {
                 const data = await response.json();
-                alert('Login successful!', data);
+                console.log('API Response:', data);
+                alert(`Login successful! Welcome ${data.username} (ID: ${data.id})`);
                 // You might want to store the user's data or a token here
                 navigate('/'); // Redirect to the homepage
             } else {
                 // Handle login failure
                 const errorData = await response.json();
-                setErrorMessage(errorData.message || 'Login failed. Please try again.');
+                alert(errorData.message || 'Login failed. Please try again.');
             }
         } catch (error) {
             console.error('Error during login:', error);
@@ -57,9 +58,18 @@ const Login = () => {
                 <div className="login-form">
                     <h2 className="login-title">Login !</h2>
                     <h2 className="login-username-title">Username</h2>
-                    <input className="login-username"></input>
-                    <h2 className="login-password-title">Password</h2>
-                    <input className="login-password"></input>
+                    <input
+                    className="login-username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <h2 className="login-username-title">Password</h2>
+                    <input
+                    className="login-password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    />
                     <button className="login-btn" onClick={handleLogin}> Login </button>
                     <div className="login-separator"></div>
                     <div className="sign-container">
