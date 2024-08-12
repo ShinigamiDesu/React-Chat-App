@@ -40,15 +40,10 @@ namespace ReactBackend.Controllers
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO login)
         {
-            var user = _userService.LoginUser(login.Username, login.Password);
-            if (user != null)
+            var userDTO = _userService.LoginUser(login.Username, login.Password);
+            if (userDTO != null)
             {
-                return Ok(new
-                {
-                    user.ID,
-                    user.Username,
-                    user.PFP,
-                });
+                return Ok(userDTO);
             }
             return Unauthorized(new { message = "Invalid username or password" });
         }

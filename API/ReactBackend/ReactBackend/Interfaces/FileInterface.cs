@@ -2,6 +2,6 @@
 {
     public interface FileInterface
     {
-        Task<string> SaveFileAsync(IFormFile file);
+        Task<byte[]> ConvertToByteArrayAsync(IFormFile file);
     }
 }

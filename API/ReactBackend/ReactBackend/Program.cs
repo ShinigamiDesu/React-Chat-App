@@ -16,12 +16,14 @@ builder.Services.AddCors(options =>
         });
 });
 
-// Register the repository and its interface
+
 builder.Services.AddScoped<UserInterface, UserRepository>();
-// Register the file service and its interface
-builder.Services.AddScoped<FileInterface, FileService>();
+builder.Services.AddScoped<UserFriendsInterface, UserFriendRepository>();
+builder.Services.AddScoped<FileInterface, IMGService>();
 // Register the service
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IMGService>();
+builder.Services.AddScoped<UserFriendService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

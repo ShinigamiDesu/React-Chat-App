@@ -7,6 +7,7 @@ function SignUp() {
   const [image, setImage] = useState(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [bio, setBio] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -22,6 +23,7 @@ function SignUp() {
     formData.append('PFP', image);
     formData.append('Username', username);
     formData.append('Password', password);
+    formData.append('Bio', bio);  // Include the bio field in the form data
 
     try {
       const response = await fetch('https://localhost:7245/api/User/Registration', {
@@ -79,6 +81,13 @@ function SignUp() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <h2 className="signup-username-title">Bio</h2>
+          <input
+            className="signup-username"
+            type="text"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
           />
           <button className="signup-btn" onClick={handleSignUp}>Sign Up</button>
           <div className="signup-separator"></div>

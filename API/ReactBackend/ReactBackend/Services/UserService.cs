@@ -9,11 +9,10 @@ namespace ReactBackend.Services
     {
         private readonly UserInterface _userInterface;
         private readonly FileInterface _fileInterface;
-
-        public UserService (UserInterface userRepository, FileInterface fileService)
+        public UserService (UserInterface userRepository, FileInterface fileInterface)
         {
             _userInterface = userRepository;
-            _fileInterface = fileService;
+            _fileInterface = fileInterface;
         }
 
         public async Task<bool> RegisterUser(SignUpDTO sign)
@@ -22,13 +21,19 @@ namespace ReactBackend.Services
             {
                 return false; // username is taken
             }
-            var profilepicture = await _fileInterface.SaveFileAsync(sign.PFP);
-            return _userInterface.CreateUser(sign.Username, sign.Password, profilepicture);
+            byte[] profilePictureBytes = await _fileInterface.ConvertToByteArrayAsync(sign.PFP);
+            return _userInterface.CreateUser(sign.Username, sign.Password, sign.Bio, profilePictureBytes);
         }
 
-        public User LoginUser(string username, string password)
+        public UserDTO LoginUser(string username, string password)
         {
-            return _userInterface.GetUserByCredentials(username, password);
+            var user = _userInterface.GetUserByCredentials(username, password);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return UserDTO.MapToDto(user);
         }
     }
 }

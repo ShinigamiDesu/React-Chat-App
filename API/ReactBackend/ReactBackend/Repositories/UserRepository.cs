@@ -1,4 +1,5 @@
-﻿using ReactBackend.Entities;
+﻿using ReactBackend.DTO;
+using ReactBackend.Entities;
 using ReactBackend.Interfaces;
 using System.Data.SqlClient;
 
@@ -11,31 +12,6 @@ namespace ReactBackend.Repositories
         public UserRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-        }
-
-        public bool CreateUser(string username, string password, string profilePicturePath)
-        {
-            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
-            {
-                string command = "INSERT INTO tbl_User(Username, Password, pfpPath) VALUES (@username, @password, @pfp)";
-                SqlCommand cmd = new SqlCommand(command, con);
-                cmd.Parameters.AddWithValue("@username", username);
-                cmd.Parameters.AddWithValue("@password", password);
-                cmd.Parameters.AddWithValue("@pfp", profilePicturePath);
-                try
-                {
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    return true; // returns true if the user has been added successfully
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return false;
-                }
-
-            }
         }
 
         public bool IsUsernameTaken(string username)
@@ -51,6 +27,32 @@ namespace ReactBackend.Repositories
                     int count = (int)cmd.ExecuteScalar();
                     con.Close();
                     return count > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool CreateUser(string username, string password, string bio, byte[] profilePicture)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string command = "INSERT INTO tbl_User (Username, Password, Bio, PFP) VALUES (@username, @password, @bio, @pfp)";
+                SqlCommand cmd = new SqlCommand(command, con);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+                cmd.Parameters.AddWithValue("@bio", bio);
+                cmd.Parameters.AddWithValue("@pfp", profilePicture);
+
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -77,12 +79,14 @@ namespace ReactBackend.Repositories
                     {
                         ID = reader.GetInt32(0),
                         Username = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        PFP = reader.GetString(3)
+                        Bio = reader.GetString(3),
+                        PFP = reader["PFP"] as byte[],  // Retrieve as byte array
+                        Status = reader.GetInt32(5)
                     };
                 }
                 return null; // Return null if no matching user is found
             }
         }
+
     }
 }

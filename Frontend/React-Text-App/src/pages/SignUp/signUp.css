@@ -9,6 +9,7 @@
     height: 1px;
     background-color: gray;
     margin: 20px 15px;
+    margin-bottom: 10px;
 }
 
 .welcome{
@@ -34,9 +35,10 @@
     display: flex;
     flex-direction: column;
     background-color: #141414;
-    height: 650px;
+    height: 750px;
     width: 600px;
     border-radius: 70px;
+    margin-bottom: 40px;
 }
 
 .signup-title{
@@ -87,6 +89,7 @@
     font-size: 30px;
     padding-left: 15px;
     font-weight: 100;
+    margin-bottom: 10px;
 }
 
 .signup-btn{
