@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './login.css'
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = () => { 
-        navigate('/');
+    const handleLogin = async () => {
+        // Create the login data object
+        const loginData = {
+            username: username,
+            password: password
+        };
+
+        try {
+            // Send the login request
+            const response = await fetch('https://localhost:7245/api/User/Login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(loginData)
+            });
+
+            // Handle the response
+            if (response.ok) {
+                const data = await response.json();
+                alert('Login successful!', data);
+                // You might want to store the user's data or a token here
+                navigate('/'); // Redirect to the homepage
+            } else {
+                // Handle login failure
+                const errorData = await response.json();
+                setErrorMessage(errorData.message || 'Login failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setErrorMessage('An error occurred. Please try again.');
+        }
     };
 
     const handleSignup = () => {

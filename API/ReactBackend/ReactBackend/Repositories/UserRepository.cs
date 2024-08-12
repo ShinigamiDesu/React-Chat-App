@@ -1,4 +1,5 @@
-﻿using ReactBackend.Interfaces;
+﻿using ReactBackend.Entities;
+using ReactBackend.Interfaces;
 using System.Data.SqlClient;
 
 namespace ReactBackend.Repositories
@@ -7,7 +8,8 @@ namespace ReactBackend.Repositories
     {
         private readonly IConfiguration _configuration;
 
-        public UserRepository(IConfiguration configuration){
+        public UserRepository(IConfiguration configuration)
+        {
             _configuration = configuration;
         }
 
@@ -32,7 +34,7 @@ namespace ReactBackend.Repositories
                     Console.WriteLine(ex.Message);
                     return false;
                 }
-                
+
             }
         }
 
@@ -55,6 +57,31 @@ namespace ReactBackend.Repositories
                     Console.WriteLine(ex.Message);
                     return false;
                 }
+            }
+        }
+
+        public User GetUserByCredentials(string username, string password)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "SELECT * FROM tbl_User WHERE Username = @username AND Password = @password";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@username", username);
+                cmd.Parameters.AddWithValue("@password", password);
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return new User
+                    {
+                        ID = reader.GetInt32(0),
+                        Username = reader.GetString(1),
+                        Password = reader.GetString(2),
+                        PFP = reader.GetString(3)
+                    };
+                }
+                return null; // Return null if no matching user is found
             }
         }
     }

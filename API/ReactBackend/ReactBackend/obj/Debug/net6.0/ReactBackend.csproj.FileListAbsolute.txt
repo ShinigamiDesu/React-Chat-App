@@ -31,3 +31,42 @@ D:\React Projects\ReactChatApp\API\ReactBackend\ReactBackend\obj\Debug\net6.0\Re
 D:\React Projects\ReactChatApp\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ref\ReactBackend.dll
 D:\React Projects\ReactChatApp\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.pdb
 D:\React Projects\ReactChatApp\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.genruntimeconfig.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.csproj.AssemblyReference.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.AssemblyInfoInputs.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.AssemblyInfo.cs
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.csproj.CoreCompileInputs.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.sourcelink.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.pdb
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\appsettings.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\ReactBackend.exe
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\ReactBackend.deps.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\ReactBackend.runtimeconfig.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\ReactBackend.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\ReactBackend.pdb
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets\msbuild.ReactBackend.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets\msbuild.build.ReactBackend.props
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ReactBackend.props
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ReactBackend.props
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\scopedcss\bundle\ReactBackend.styles.css
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBac.E2CFF815.Up2Date
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\refint\ReactBackend.dll
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ReactBackend.genruntimeconfig.cache
+C:\Users\amazi\Desktop\REACT\React-Chat-App\API\ReactBackend\ReactBackend\obj\Debug\net6.0\ref\ReactBackend.dll

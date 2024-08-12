@@ -24,7 +24,7 @@ function SignUp() {
     formData.append('Password', password);
 
     try {
-      const response = await fetch('https://localhost:7245/api/registration/registration', {
+      const response = await fetch('https://localhost:7245/api/User/Registration', {
         method: 'POST',
         body: formData,
       });

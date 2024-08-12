@@ -1,5 +1,7 @@
-﻿using ReactBackend.Entities;
+﻿using ReactBackend.DTO;
+using ReactBackend.Entities;
 using ReactBackend.Interfaces;
+using ReactBackend.Repositories;
 
 namespace ReactBackend.Services
 {
@@ -14,7 +16,7 @@ namespace ReactBackend.Services
             _fileInterface = fileService;
         }
 
-        public async Task<bool> RegisterUser(SignUp sign)
+        public async Task<bool> RegisterUser(SignUpDTO sign)
         {
             if (_userInterface.IsUsernameTaken(sign.Username))
             {
@@ -22,6 +24,11 @@ namespace ReactBackend.Services
             }
             var profilepicture = await _fileInterface.SaveFileAsync(sign.PFP);
             return _userInterface.CreateUser(sign.Username, sign.Password, profilepicture);
+        }
+
+        public User LoginUser(string username, string password)
+        {
+            return _userInterface.GetUserByCredentials(username, password);
         }
     }
 }

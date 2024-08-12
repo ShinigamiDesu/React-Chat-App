@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReactBackend.DTO;
 using ReactBackend.Entities;
 using ReactBackend.Services;
 using System.Data.SqlClient;
@@ -10,12 +11,12 @@ namespace ReactBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegistrationController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly UserService _userService;
 
-        public RegistrationController(IConfiguration configuration, UserService user)
+        public UserController(IConfiguration configuration, UserService user)
         {
             _configuration = configuration;
             _userService = user;
@@ -23,7 +24,7 @@ namespace ReactBackend.Controllers
 
         [HttpPost]
         [Route("Registration")]
-        public async Task<IActionResult> Registration([FromForm] SignUp signup)
+        public async Task<IActionResult> Registration([FromForm] SignUpDTO signup)
         {
             if (await _userService.RegisterUser(signup))
             {
@@ -33,6 +34,23 @@ namespace ReactBackend.Controllers
             {
                 return Conflict("Username is already taken");
             }
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO login)
+        {
+            var user = _userService.LoginUser(login.Username, login.Password);
+            if (user != null)
+            {
+                return Ok(new
+                {
+                    user.ID,
+                    user.Username,
+                    user.PFP,
+                });
+            }
+            return Unauthorized(new { message = "Invalid username or password" });
         }
     }
 }
