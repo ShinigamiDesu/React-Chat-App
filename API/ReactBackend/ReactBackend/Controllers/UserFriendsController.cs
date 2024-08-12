@@ -16,10 +16,9 @@ namespace ReactBackend.Controllers
         }
 
         [HttpGet]
-        [Route("GetFriends")]
-        public IActionResult GetFriends()
+        [Route("GetFriends/{userId}")]
+        public IActionResult GetFriends(int userId)
         {
-            int userId = 1;
 
             var friends = _userFriendService.GetFriends(userId);
             if (friends != null && friends.Count > 0)

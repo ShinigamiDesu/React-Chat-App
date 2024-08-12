@@ -4,9 +4,18 @@ import Goko from '../../assets/goku.png';
 import Yhwach from '../../assets/yhwach.png';
 import Accept from '../../assets/accept.png';
 import Remove from '../../assets/reject.png';
+import { useNavigate } from 'react-router-dom';
 
 
-function friendRequests({isOpen}) {
+function FriendRequests({isOpen}) {
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();
+  if (!token || !userId) {
+    // Redirect to login page or show an error message
+    navigate('/login');
+    return null; // Prevent the component from rendering
+  }
   const testUsers =[
     {
       pfp: Goko,
@@ -58,4 +67,4 @@ function friendRequests({isOpen}) {
   )
 }
 
-export default friendRequests
+export default FriendRequests

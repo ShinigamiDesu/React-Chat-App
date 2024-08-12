@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Remove from '../../assets/remove.png';
+import { useNavigate } from 'react-router-dom';
 import './friends.css';
 
 function Friends({ isOpen }) { 
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
   const [friends, setFriends] = useState([]);
   const [hasFriends, setHasFriends] = useState(true); // New state to track if the user has friends
 
   useEffect(() => {
+
+    if (!token || !userId) {
+      // Redirect to login page or show an error message
+      navigate('/login');
+      return null; // Prevent the component from rendering
+    }
+
     // Fetch friends data from the backend API
     const fetchFriends = async () => {
       try {
-        const response = await fetch('https://localhost:7245/api/UserFriends/GetFriends', {
-          method: 'GET'
+        const response = await fetch('https://localhost:7245/api/UserFriends/GetFriends/${userId}', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,  // Include the token in the headers
+            'Content-Type': 'application/json'
+          }
         });
 
         if (response.ok) {
@@ -30,7 +45,7 @@ function Friends({ isOpen }) {
     };
 
     fetchFriends();
-  }, []);
+  }, [token, userId]);
 
   return (
     <div className="friends-container-main">

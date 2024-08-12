@@ -2,9 +2,18 @@ import React from 'react'
 import Phantom from '../../assets/phantom.jpg';
 import Logo from '../../assets/logo.png';
 import Arrow from '../../assets/arrow.png';
+import { useNavigate } from 'react-router-dom';
 import './groupChats.css'
 
 function groupChats({isOpen}) {
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    if (!token || !userId) {
+      // Redirect to login page or show an error message
+      navigate('/login');
+      return null; // Prevent the component from rendering
+    }
     const testUsers =[
         {
           pfp: Phantom,

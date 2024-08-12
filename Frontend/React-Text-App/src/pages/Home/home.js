@@ -5,10 +5,18 @@ import Luffy from '../../assets/luffy.jpeg';
 import Goko from '../../assets/goku.png';
 import Yhwach from '../../assets/yhwach.png';
 import Chat from '../../assets/chat.png';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 function Home({isOpen}) {
-
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();
+  if (!token || !userId) {
+    // Redirect to login page or show an error message
+    navigate('/login');
+    return null; // Prevent the component from rendering
+  }
   const testUsers =[
     {
       pfp: Gojo,

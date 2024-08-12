@@ -7,11 +7,19 @@ import FriendRequest from '../assets/heart.png';
 import GroupChats from '../assets/group.png';
 import Search from '../assets/search.png';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ children }) {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
     const [currMenu, setCurrMenu] = useState("");
+
+    const handleLogout = () => {
+        localStorage.removeItem('userId');
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
 
     const menuItem = [
         {
@@ -44,7 +52,8 @@ function Sidebar({ children }) {
     const logoutItem = {
         path: "/login",
         name: "Logout",
-        icon: LogoutIcon
+        icon: LogoutIcon,
+        onClick: handleLogout
     };
 
     const renderChildren = () => cloneElement(children, { isOpen });
