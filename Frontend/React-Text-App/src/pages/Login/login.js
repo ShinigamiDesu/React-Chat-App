@@ -29,8 +29,10 @@ const Login = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('API Response:', data);
+                // Store user ID and token in localStorage
+                localStorage.setItem('userId', data.id);
+                localStorage.setItem('token', data.token);
                 alert(`Login successful! Welcome ${data.username} (ID: ${data.id})`);
-                // You might want to store the user's data or a token here
                 navigate('/'); // Redirect to the homepage
             } else {
                 // Handle login failure
