@@ -5,26 +5,17 @@ import './friends.css';
 
 function Friends({ isOpen }) { 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
   const [friends, setFriends] = useState([]);
   const [hasFriends, setHasFriends] = useState(true);
 
   useEffect(() => {
-
-    if (!token || !userId) {
-      // Redirect to login page if token or userId is missing
-      navigate('/login');
-      return;
-    }
-
     // Fetch friends data from the backend API
     const fetchFriends = async () => {
       try {
         const response = await fetch(`https://localhost:7245/api/UserFriends/GetFriends/${userId}`, {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,  // Include the token in the headers
             'Content-Type': 'application/json'
           }
         });
@@ -45,7 +36,7 @@ function Friends({ isOpen }) {
     };
 
     fetchFriends();
-  }, [token, userId, navigate]);
+  }, [userId, navigate]);
 
   return (
     <div className="friends-container-main">

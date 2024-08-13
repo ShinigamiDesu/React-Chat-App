@@ -36,7 +36,7 @@ const Login = () => {
                 console.log('API Response:', data);
                 // Store user ID and token in localStorage
                 localStorage.setItem('userId', data.id);
-                localStorage.setItem('token', data.token);
+                //localStorage.setItem('token', data.token);
                 alert(`Login successful! Welcome ${data.username} (ID: ${data.id})`);
                 navigate('/'); // Redirect to the homepage
             } else {
