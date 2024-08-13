@@ -14,7 +14,12 @@ namespace ReactBackend.Services
 
         public List<UserDTO> GetFriends(int userId)
         {
-            return _userFriendRepository.GetFriendsByUserId(userId);
+            var user = _userFriendRepository.GetFriendsByUserId(userId);
+            if (user == null)
+            {
+                return null;
+            }
+            return user.Select(UserDTO.MapToDto).ToList();
         }
     }
 }

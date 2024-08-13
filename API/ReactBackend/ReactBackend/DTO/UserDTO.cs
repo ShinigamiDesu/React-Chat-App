@@ -6,7 +6,7 @@ namespace ReactBackend.DTO
     {
         public int ID { get; set; }
         public string Username { get; set; }
-        public byte[] PFP { get; set; }
+        public string PFP { get; set; }
         public string Bio { get; set; }
         public string Status { get; set; }
 
@@ -18,7 +18,7 @@ namespace ReactBackend.DTO
                 ID = user.ID,
                 Username = user.Username,
                 Bio = user.Bio,
-                PFP = user.PFP,
+                PFP = Convert.ToBase64String(user.PFP),
                 Status = user.Status == 1 ? "Online" : "Offline"
             };
         }

@@ -19,6 +19,11 @@ function SignUp() {
   };
 
   const handleSignUp = async () => {
+    if (!username || !password || !bio || !image) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append('PFP', image);
     formData.append('Username', username);

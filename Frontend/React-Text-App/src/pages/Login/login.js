@@ -9,6 +9,11 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
         // Create the login data object
         const loginData = {
             Username: username,
@@ -42,6 +47,7 @@ const Login = () => {
         } catch (error) {
             console.error('Error during login:', error);
             setErrorMessage('An error occurred. Please try again.');
+            console.log(errorMessage);
         }
     };
 

@@ -1,9 +1,10 @@
 ﻿using ReactBackend.DTO;
+using ReactBackend.Entities;
 
 namespace ReactBackend.Interfaces
 {
     public interface UserFriendsInterface
     {
-        List<UserDTO> GetFriendsByUserId(int userId);
+        List<User> GetFriendsByUserId(int userId);
     }
 }

@@ -8,20 +8,20 @@ function Friends({ isOpen }) {
   const token = localStorage.getItem('token');
   const userId = localStorage.getItem('userId');
   const [friends, setFriends] = useState([]);
-  const [hasFriends, setHasFriends] = useState(true); // New state to track if the user has friends
+  const [hasFriends, setHasFriends] = useState(true);
 
   useEffect(() => {
 
     if (!token || !userId) {
-      // Redirect to login page or show an error message
+      // Redirect to login page if token or userId is missing
       navigate('/login');
-      return null; // Prevent the component from rendering
+      return;
     }
 
     // Fetch friends data from the backend API
     const fetchFriends = async () => {
       try {
-        const response = await fetch('https://localhost:7245/api/UserFriends/GetFriends/${userId}', {
+        const response = await fetch(`https://localhost:7245/api/UserFriends/GetFriends/${userId}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Include the token in the headers
@@ -45,7 +45,7 @@ function Friends({ isOpen }) {
     };
 
     fetchFriends();
-  }, [token, userId]);
+  }, [token, userId, navigate]);
 
   return (
     <div className="friends-container-main">
@@ -58,12 +58,13 @@ function Friends({ isOpen }) {
           {
             friends.map((user) => (
               <div className='friend-item' key={user.id}>
-                <img src={user.pfp} alt='' className='friend-item-pfp' />
+                <img src={`data:image/png;base64,${user.pfp}`} alt='' className='friend-item-pfp' />
                 <div className='friend-item-details-container'>
                   <h2 className='friend-item-username'>
                     {user.username}
                     <p className="friend-status"> • {user.status}</p>
                   </h2>
+                  <p className='friend-item-bio'>{user.bio}</p>
                 </div>
                 <button className={isOpen ? 'friend-item-btn-open' : 'friend-item-btn-close'}>
                   <img src={Remove} alt="" className="friend-item-btn-icon" />

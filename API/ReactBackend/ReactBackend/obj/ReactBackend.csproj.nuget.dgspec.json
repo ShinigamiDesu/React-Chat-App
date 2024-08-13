@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\React Projects\\ReactChatApp\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj": {}
+    "D:\\React Projects\\React-Chat-App\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj": {}
   },
   "projects": {
-    "D:\\React Projects\\ReactChatApp\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj": {
+    "D:\\React Projects\\React-Chat-App\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\React Projects\\ReactChatApp\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj",
+        "projectUniqueName": "D:\\React Projects\\React-Chat-App\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj",
         "projectName": "ReactBackend",
-        "projectPath": "D:\\React Projects\\ReactChatApp\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj",
+        "projectPath": "D:\\React Projects\\React-Chat-App\\API\\ReactBackend\\ReactBackend\\ReactBackend.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\React Projects\\ReactChatApp\\API\\ReactBackend\\ReactBackend\\obj\\",
+        "outputPath": "D:\\React Projects\\React-Chat-App\\API\\ReactBackend\\ReactBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

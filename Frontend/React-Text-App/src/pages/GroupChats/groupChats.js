@@ -5,7 +5,7 @@ import Arrow from '../../assets/arrow.png';
 import { useNavigate } from 'react-router-dom';
 import './groupChats.css'
 
-function groupChats({isOpen}) {
+function GroupChats({isOpen}) {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -53,4 +53,4 @@ function groupChats({isOpen}) {
   )
 }
 
-export default groupChats
+export default GroupChats
