@@ -17,13 +17,12 @@ function Sidebar({ children }) {
 
     const handleLogout = () => {
         localStorage.removeItem('userId');
-        localStorage.removeItem('token');
         navigate('/login');
     };
 
     const menuItem = [
         {
-            path: "/",
+            path: "/home",
             name: "Home",
             icon: HomeIcon
         },

@@ -38,7 +38,7 @@ const Login = () => {
                 localStorage.setItem('userId', data.id);
                 //localStorage.setItem('token', data.token);
                 alert(`Login successful! Welcome ${data.username} (ID: ${data.id})`);
-                navigate('/'); // Redirect to the homepage
+                navigate('/home'); // Redirect to the homepage
             } else {
                 // Handle login failure
                 const errorData = await response.json();

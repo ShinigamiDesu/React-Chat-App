@@ -27,5 +27,39 @@ namespace ReactBackend.Controllers
             }
             return NotFound(new { message = "No friends found" });
         }
+
+        [HttpGet]
+        [Route("FriendRequests/{userId}")]
+        public IActionResult getFriendRequests(int userId)
+        {
+            var friendRQ = _userFriendService.getFriendRequests(userId);
+            if (friendRQ != null && friendRQ.Count > 0)
+            {
+                return Ok(friendRQ);
+            }
+            return NotFound(new { message = "No friends found" });
+        }
+
+        [HttpDelete]
+        [Route("DeleteRQ/{fromId}/{toId}")]
+        public async Task<IActionResult> deleteRQ(int fromId, int toId)
+        {
+            if(_userFriendService.removeFriendRequest(fromId, toId))
+            {
+                return Ok("User Deleted");
+            }
+            return BadRequest("Could not delete the friend request.");
+        }
+
+        [HttpPost]
+        [Route("AcceptRQ/{fromId}/{toId}")]
+        public async Task<IActionResult> acceptRQ(int fromId, int toId)
+        {
+            if (_userFriendService.insertNewFriend(fromId, toId))
+            {
+                return Ok("User Added To Friends");
+            }
+            return BadRequest("Could not add friend.");
+        }
     }
 }
