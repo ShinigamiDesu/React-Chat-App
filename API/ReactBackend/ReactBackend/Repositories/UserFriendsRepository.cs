@@ -101,7 +101,7 @@ namespace ReactBackend.Repositories
 
         public bool insertFriend(int fromID, int toID)
         {
-            if(deleteFriendRequest(fromID, toID))
+            if (deleteFriendRequest(fromID, toID))
             {
                 using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
                 {
@@ -128,6 +128,30 @@ namespace ReactBackend.Repositories
                 return false;
             }
 
+        }
+
+        public bool removeFriend(int userID, int friendID)
+        {
+
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "DELETE FROM tbl_Friends WHERE UserID = @userID AND FriendID = @friendID";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("userID", userID);
+                cmd.Parameters.AddWithValue("@friendID", friendID);
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close ();
+                    return true;
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine (ex.Message);
+                    return false;
+                }
+            }
         }
     }
 }

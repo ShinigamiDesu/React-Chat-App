@@ -61,5 +61,16 @@ namespace ReactBackend.Controllers
             }
             return BadRequest("Could not add friend.");
         }
+
+        [HttpDelete]
+        [Route("DeleteFriend/{userId}/{friendId}")]
+        public async Task<IActionResult> deleteFriend(int userId, int friendId)
+        {
+            if (_userFriendService.deleteFriend(userId, friendId))
+            {
+                return Ok(new { message = "User deleted successfully" });
+            }
+            return BadRequest(new { message = "User deleted failure" });
+        }
     }
 }

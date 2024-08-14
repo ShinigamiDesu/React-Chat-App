@@ -8,6 +8,7 @@ import FriendRequests from './pages/FriendRequests/friendsRequests';
 import GroupChats from './pages/GroupChats/groupChats';
 import Search from './pages/SearchUser/searchUser';
 import SignUp from './pages/SignUp/SignUp';
+import Chat from './pages/Chat/Chat';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/friend-requests" element={<Sidebar><FriendRequests /></Sidebar>} />
                 <Route path="/group-chats" element={<Sidebar><GroupChats /></Sidebar>} />
                 <Route path="/search-users" element={<Sidebar><Search /></Sidebar>} />
+                <Route path="/user-chat" element={<Sidebar><Chat /></Sidebar>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
             </Routes>

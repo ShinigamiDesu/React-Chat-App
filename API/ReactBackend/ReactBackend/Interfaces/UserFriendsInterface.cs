@@ -9,5 +9,6 @@ namespace ReactBackend.Interfaces
         List<User> GetFriendRQByUserId(int userId);
         bool deleteFriendRequest(int fromID, int toID);
         bool insertFriend(int fromID, int toID);
+        bool removeFriend(int userID, int friendID);
     }
 }

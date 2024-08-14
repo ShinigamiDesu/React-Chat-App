@@ -49,5 +49,14 @@ namespace ReactBackend.Services
             }
             return false;
         }
+
+        public bool deleteFriend(int userID, int friendID)
+        {
+            if(_userFriendInterface.removeFriend(userID, friendID))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

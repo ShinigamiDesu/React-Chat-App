@@ -5,9 +5,12 @@ import Luffy from '../../assets/luffy.jpeg';
 import Goko from '../../assets/goku.png';
 import Yhwach from '../../assets/yhwach.png';
 import Chat from '../../assets/chat.png';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 function Home({isOpen}) {
+  const navigate = useNavigate();
+
   const testUsers =[
     {
       pfp: Gojo,
@@ -41,6 +44,9 @@ function Home({isOpen}) {
     }
   ];
 
+    const navigateToChat = () => {
+      navigate('/user-chat');
+    }
 
   return (
     <div className='home-container'>
@@ -55,7 +61,7 @@ function Home({isOpen}) {
                     <h2 className='item-username'>{user.username} <p className="item-status"> • {user.status}</p> </h2>
                     <h2 className='item-bio'>{user.bio}</h2>
                   </div>
-                  <button className={isOpen ? 'item-btn-open' :  'item-btn-close'}>
+                  <button className={isOpen ? 'item-btn-open' :  'item-btn-close'}  onClick={navigateToChat}>
                     <img src={Chat} alt="" className="item-btn-icon"/>
                     <p className="item-btnText">Chat</p>
                   </button>

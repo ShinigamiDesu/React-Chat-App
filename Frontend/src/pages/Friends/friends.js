@@ -38,6 +38,29 @@ function Friends({ isOpen }) {
     fetchFriends();
   }, [userId, navigate]);
 
+  const removeFriend = async (userId, friendId) => {
+    try{
+      const response = await fetch(`https://localhost:7245/api/UserFriends/DeleteFriend/${userId}/${friendId}`,{
+        method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+      });
+
+      if(response.ok){
+        console.log('Friend Deleted');
+        window.location.reload();
+      }
+      else{
+        const errorData = await response.json();
+        console.log(errorData.message || 'Deletion Failed');
+      }
+    }
+    catch(error){
+      console.log('Catch Error :' + error);
+    }
+  };
+
   return (
     <div className="friends-container-main">
       <h1 className='friends-title'>
@@ -57,7 +80,7 @@ function Friends({ isOpen }) {
                   </h2>
                   <p className='friend-item-bio'>{user.bio}</p>
                 </div>
-                <button className={isOpen ? 'friend-item-btn-open' : 'friend-item-btn-close'}>
+                <button className={isOpen ? 'friend-item-btn-open' : 'friend-item-btn-close'} onClick={() => removeFriend(userId, user.id)}>
                   <img src={Remove} alt="" className="friend-item-btn-icon" />
                   <p className="friend-btnText">Remove</p>
                 </button>
