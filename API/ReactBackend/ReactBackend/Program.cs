@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3001")
+            builder.WithOrigins("http://localhost:3002")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -19,9 +19,11 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<UserInterface, UserRepository>();
 builder.Services.AddScoped<UserFriendsInterface, UserFriendRepository>();
+builder.Services.AddScoped<UserChatInterface, UserChatRepository>();
 builder.Services.AddScoped<FileInterface, IMGService>();
 // Register the service
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<UserChatService>();
 builder.Services.AddScoped<IMGService>();
 builder.Services.AddScoped<UserFriendService>();
 

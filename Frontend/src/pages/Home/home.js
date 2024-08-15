@@ -1,48 +1,43 @@
-import React from 'react';
-import Gojo from '../../assets/gojo.jpg';
-import Sukuna from '../../assets/sukuna.jpg';
-import Luffy from '../../assets/luffy.jpeg';
-import Goko from '../../assets/goku.png';
-import Yhwach from '../../assets/yhwach.png';
-import Chat from '../../assets/chat.png';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Chat from '../../assets/chat.png';
 import './home.css';
 
 function Home({isOpen}) {
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
+  const [chats, setChats] = useState([]);
+  const [hasChats, setHasChats] = useState(true);
 
-  const testUsers =[
-    {
-      pfp: Gojo,
-      username: "Gojo Saturo",
-      bio: "The Strongest Sorcerer You Know :D!",
-      status: "Online"
-    },
-    {
-      pfp: Sukuna,
-      username: "Ryomen Sukuna",
-      bio: "The Strongest Sorcerer of All Time, Also the King of Curses!",
-      status: "Online"
-    },
-    {
-      pfp: Luffy,
-      username: "Monkey D. Luffy",
-      bio: "I am going to be the King of The Pirates, HAHAHAHAHA!",
-      status: "Online"
-    },
-    {
-      pfp: Goko,
-      username: "Son Goku",
-      bio: "Hi i am Goku, I heard you are strong. Lets Spar!",
-      status: "Offline"
-    },
-    {
-      pfp: Yhwach,
-      username: "Yhwach",
-      bio: "The one who will rob you of everything...",
-      status: "Offline"
+  useEffect(() => {
+    const fetchChats = async () => {
+      try{
+        const response = await fetch(`https://localhost:7245/api/UserChat/GetChats/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if(response.ok){
+          const data = await response.json();
+          console.log('fetched chats');
+          setChats(data);
+        }
+        else if(response.status === 404){
+          setHasChats(false);
+        }
+        else {
+          console.error('Failed to fetch chats');
+        }
+      }
+      catch(error){
+        console.log('Catch Error: ' + error);
+      }
     }
-  ];
+    
+    fetchChats();
+  }, [userId]);
 
     const navigateToChat = () => {
       navigate('/user-chat');
@@ -50,16 +45,17 @@ function Home({isOpen}) {
 
   return (
     <div className='home-container'>
-      <h1 className='home-title'>Your Recent Chats:</h1>
+      <h1 className='home-title'>{hasChats ? `Your Recent Chats (${chats.length}):`  : 'You Have No Recent Chats'}</h1>
       <div className="separator"></div>
-      <div className='chat-container'>
+      {hasChats && (
+          <div className='chat-container'>
           {
-            testUsers.map((user) => (
+            chats.map((chat) => (
                 <div className='chat-item'>
-                  <img src={user.pfp} alt='' className='item-pfp'/>
+                  <img src={`data:image/png;base64,${chat.pfp}`} alt='' className='item-pfp' key={chat.id}/>
                   <div className='item-details-container'>
-                    <h2 className='item-username'>{user.username} <p className="item-status"> • {user.status}</p> </h2>
-                    <h2 className='item-bio'>{user.bio}</h2>
+                    <h2 className='item-username'>{chat.username} <p className="item-status"> • {chat.status}</p> </h2>
+                    <h2 className='item-bio'>{chat.bio}</h2>
                   </div>
                   <button className={isOpen ? 'item-btn-open' :  'item-btn-close'}  onClick={navigateToChat}>
                     <img src={Chat} alt="" className="item-btn-icon"/>
@@ -68,8 +64,8 @@ function Home({isOpen}) {
                 </div>
             ))
           }
-
       </div>
+        )}
     </div>
   );
 }
