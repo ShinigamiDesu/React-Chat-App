@@ -39,7 +39,10 @@ function Home({isOpen}) {
     fetchChats();
   }, [userId]);
 
-    const navigateToChat = () => {
+    const navigateToChat = (friendId, username, pfp) => {
+      localStorage.setItem('friendId', friendId);
+      localStorage.setItem('username', username);
+      localStorage.setItem('pfp', pfp);
       navigate('/user-chat');
     }
 
@@ -57,7 +60,7 @@ function Home({isOpen}) {
                     <h2 className='item-username'>{chat.username} <p className="item-status"> • {chat.status}</p> </h2>
                     <h2 className='item-bio'>{chat.bio}</h2>
                   </div>
-                  <button className={isOpen ? 'item-btn-open' :  'item-btn-close'}  onClick={navigateToChat}>
+                  <button className={isOpen ? 'item-btn-open' :  'item-btn-close'}  onClick={() => navigateToChat(chat.id, chat.username, chat.pfp)}>
                     <img src={Chat} alt="" className="item-btn-icon"/>
                     <p className="item-btnText">Chat</p>
                   </button>

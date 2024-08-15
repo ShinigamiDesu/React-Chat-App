@@ -1,6 +1,6 @@
 ﻿namespace ReactBackend.Entities
 {
-    public class PVTMessages
+    public class Messages
     {
         public int message_ID { get; set; }
         public int message_fromID { get; set; }

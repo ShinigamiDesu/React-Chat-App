@@ -23,7 +23,7 @@ namespace ReactBackend.Repositories
                 string query = @"SELECT u.UserID, u.Username, u.Bio, u.PFP, u.Status
                                 FROM tbl_User u
                                 JOIN tbl_Friends f ON u.UserID = f.FriendID
-                                WHERE f.UserID = @userId";
+                                WHERE f.UserID = @userId ORDER BY u.Status DESC";
 
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@userId", userId);

@@ -21,5 +21,15 @@ namespace ReactBackend.Services
             }
             return chats.Select(UserDTO.MapToDto).ToList();
         }
+
+        public List<MessagesDTO> getMessages(int userId, int friendId)
+        {
+            var messages = _userChatInterface.getPVTMessages(userId, friendId);
+            if (messages == null)
+            {
+                return null;
+            }
+            return messages.Select(MessagesDTO.MapToDto).ToList();
+        }
     }
 }

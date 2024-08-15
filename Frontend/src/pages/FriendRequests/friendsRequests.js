@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './friendsRequests.css';
-import { useNavigate } from 'react-router-dom';
 import Accept from '../../assets/accept.png';
 import Remove from '../../assets/reject.png';
 
 function FriendRequests({ isOpen }) {
-  const navigate = useNavigate();
   const userId = localStorage.getItem('userId');
   const [friendsRQ, setFriendRQList] = useState([]);
   const [hasFriendRQ, setHasFriendRQ] = useState(true);

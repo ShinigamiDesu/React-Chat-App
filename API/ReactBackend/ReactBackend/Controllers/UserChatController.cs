@@ -27,5 +27,17 @@ namespace ReactBackend.Controllers
             }
             return NotFound("No Chats Where Found");
         }
+
+        [HttpGet]
+        [Route("GetMessages/{userId}/{friendId}")]
+        public IActionResult getPVTMessages(int userId, int friendId)
+        {
+            var messages = _userChatService.getMessages(userId, friendId);
+            if (messages != null && messages.Count > 0)
+            {
+                return Ok(messages);
+            }
+            return NotFound("No Messages Where Found");
+        }
     }
 }
