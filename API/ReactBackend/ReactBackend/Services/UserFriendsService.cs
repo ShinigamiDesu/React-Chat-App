@@ -58,5 +58,14 @@ namespace ReactBackend.Services
             }
             return false;
         }
+
+        public bool addFriend(int userID, int friendID)
+        {
+            if (_userFriendInterface.addFriend(userID, friendID))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

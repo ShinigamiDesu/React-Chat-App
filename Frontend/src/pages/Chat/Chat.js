@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Send from '../../assets/send.png';
 import './Chat.css';
 
-function Chat() {
+function Chat({isOpen}) {
   const userId = localStorage.getItem('userId');
   const friendId = localStorage.getItem('friendId');
-  const username = localStorage.getItem('username');
-  const pfp = localStorage.getItem('pfp');
+  const username = localStorage.getItem('ChatUsername');
+  const Chatpfp = localStorage.getItem('Chatpfp');
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
@@ -34,9 +34,9 @@ function Chat() {
   }, [userId, friendId]);
 
   return (
-    <div className='userChat-main-container'>
+    <div className={isOpen ? 'userChat-main-container' : 'userChat-main-close'}>
       <div className='userChat-Top'>
-        <img src={`data:image/png;base64,${pfp}`} alt='' className='userChat-img' />
+        <img src={`data:image/png;base64,${Chatpfp}`} alt='' className='userChat-img' />
         <h1 className='userChat-username'> • {username}</h1>
       </div>
       <div className="userChat-separator"></div>
@@ -44,7 +44,7 @@ function Chat() {
         {messages.map((message) => (
           message.senderID.toString() === friendId.toString() ? (
             <div className='userChatFrom' key={message.id}>
-              <img src={`data:image/png;base64,${pfp}`} alt='' className='userChat-fromIMG' />
+              <img src={`data:image/png;base64,${Chatpfp}`} alt='' className='userChat-fromIMG' />
               <p className='userChat-fromMSG'>{message.message}</p>
             </div>
           ) : (
@@ -55,7 +55,7 @@ function Chat() {
         ))}
       </div>
       <div className='userChat-Bottom'>
-        <input className="userChat-input" placeholder='type your message here . . .' />
+        <input className={isOpen ? "userChat-input-open" : "userChat-input-close"} placeholder='type your message here . . .' />
         <img src={Send} alt='' className='userChat-sendIMG' />
       </div>
     </div>

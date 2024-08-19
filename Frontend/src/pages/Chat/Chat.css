@@ -5,6 +5,13 @@
     height: 100vh;
 }
 
+.userChat-main-close{
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 90px);  /* Takes the full width of the viewport */
+    height: 100vh;
+}
+
 .userChat-separator{
     height: 1px;
     background-color: gray;
@@ -50,13 +57,25 @@
     padding-top: 5px;
 }
 
-.userChat-input{
+.userChat-input-open{
     color: white;
     font-weight: 200;
     font-size: 25px;
     background-color: #141414;
     border: 1px solid rgb(50,50,50);
     width: 1560px;
+    height: 55px;
+    border-radius: 50px;
+    padding-left: 20px;
+}
+
+.userChat-input-close{
+    color: white;
+    font-weight: 200;
+    font-size: 25px;
+    background-color: #141414;
+    border: 1px solid rgb(50,50,50);
+    width: 1730px;
     height: 55px;
     border-radius: 50px;
     padding-left: 20px;

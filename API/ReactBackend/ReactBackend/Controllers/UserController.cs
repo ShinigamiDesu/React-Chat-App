@@ -47,5 +47,17 @@ namespace ReactBackend.Controllers
             }
             return Unauthorized(new { message = "Invalid username or password" });
         }
+
+        [HttpGet]
+        [Route("GetUsers/{username}")]
+        public IActionResult getUserSearched(string username)
+        {
+            var user = _userService.getUsersSearched(username);
+            if (user != null && user.Count > 0)
+            {
+                return Ok(user);
+            }
+            return NotFound("No Users");
+        }
     }
 }

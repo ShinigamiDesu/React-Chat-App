@@ -41,8 +41,8 @@ function Home({isOpen}) {
 
     const navigateToChat = (friendId, username, pfp) => {
       localStorage.setItem('friendId', friendId);
-      localStorage.setItem('username', username);
-      localStorage.setItem('pfp', pfp);
+      localStorage.setItem('ChatUsername', username);
+      localStorage.setItem('Chatpfp', pfp);
       navigate('/user-chat');
     }
 

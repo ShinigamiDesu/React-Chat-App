@@ -1,7 +1,6 @@
 import React, { useState, cloneElement } from 'react';
 import Bars from '../assets/bars.png';
 import HomeIcon from '../assets/home.png';
-import LogoutIcon from '../assets/logout.png';
 import FriendsIcon from '../assets/friends.png';
 import FriendRequest from '../assets/heart.png';
 import GroupChats from '../assets/group.png';
@@ -10,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function Sidebar({ children }) {
+    const pfp = localStorage.getItem('pfp');
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(true);
     const toggle = () => setIsOpen(!isOpen);
@@ -46,12 +46,12 @@ function Sidebar({ children }) {
             name: "Search User",
             icon: Search
         },
-    ];
-
+    ]; 
+    const base64Pfp = `data:image/png;base64,${pfp}`;
     const logoutItem = {
         path: "/login",
         name: "Logout",
-        icon: LogoutIcon,
+        icon: base64Pfp,
         onClick: handleLogout
     };
 
@@ -77,9 +77,9 @@ function Sidebar({ children }) {
                 <div className={isOpen ? "logout-item-open" : "logout-item-close"}>
                     <NavLink to={logoutItem.path} className="item-link">
                         <div className='item-icon'>
-                            <img src={logoutItem.icon} alt='' className='item-icon'/>
+                            <img src={logoutItem.icon} alt='' className='logout-item-icon'/>
                         </div>
-                        <div className={isOpen ? "item-text-open" : "item-text-close"}>{logoutItem.name}</div>
+                        <div className={isOpen ? "logout-item-text-open" : "logout-item-text-close"}>{logoutItem.name}</div>
                     </NavLink>
                 </div>
             </div>

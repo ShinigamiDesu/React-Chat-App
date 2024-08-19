@@ -105,7 +105,7 @@ namespace ReactBackend.Repositories
             {
                 using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
                 {
-                    string query = "INSERT INTO tbl_Friends(UserID, FriendID) VALUES (@userID, @friendID)";
+                    string query = "INSERT INTO tbl_Friends(UserID, FriendID) VALUES (@userID, @friendID) ; INSERT INTO tbl_Friends(UserID, FriendID) VALUES (@friendID, @userID)";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@friendID", toID);
                     cmd.Parameters.AddWithValue("@userID", fromID);
@@ -135,7 +135,7 @@ namespace ReactBackend.Repositories
 
             using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
             {
-                string query = "DELETE FROM tbl_Friends WHERE UserID = @userID AND FriendID = @friendID";
+                string query = "DELETE FROM tbl_Friends WHERE UserID = @userID AND FriendID = @friendID ; DELETE FROM tbl_Friends WHERE UserID = @friendID AND FriendID = @userID";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("userID", userID);
                 cmd.Parameters.AddWithValue("@friendID", friendID);
@@ -149,6 +149,29 @@ namespace ReactBackend.Repositories
                 catch(Exception ex)
                 {
                     Console.WriteLine (ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool addFriend(int userID, int friendID)
+        {
+            using(SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "INSERT INTO tbl_FriendRequests(Request_FromID, Request_ToID) VALUES (@userid, @friendid)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@userid", userID);
+                cmd.Parameters.AddWithValue("@friendid", friendID);
+                try
+                {
+                    con.Open ();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
                     return false;
                 }
             }

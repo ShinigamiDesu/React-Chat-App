@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async () => {
@@ -33,21 +32,17 @@ const Login = () => {
             // Handle the response
             if (response.ok) {
                 const data = await response.json();
-                console.log('API Response:', data);
-                // Store user ID and token in localStorage
                 localStorage.setItem('userId', data.id);
-                //localStorage.setItem('token', data.token);
-                alert(`Login successful! Welcome ${data.username} (ID: ${data.id})`);
+                localStorage.setItem('pfp', data.pfp);
+                localStorage.setItem('username', data.username);
+                alert(`Login successful! Welcome ${data.username}`);
                 navigate('/home'); // Redirect to the homepage
             } else {
                 // Handle login failure
-                const errorData = await response.json();
-                alert(errorData.message || 'Login failed. Please try again.');
+                alert('Login failed. Please try again.');
             }
         } catch (error) {
-            console.error('Error during login:', error);
-            setErrorMessage('An error occurred. Please try again.');
-            console.log(errorMessage);
+            console.log('Catch Error');
         }
     };
 

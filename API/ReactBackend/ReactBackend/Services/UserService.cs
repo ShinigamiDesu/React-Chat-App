@@ -35,5 +35,15 @@ namespace ReactBackend.Services
 
             return UserDTO.MapToDto(user);
         }
+
+        public List<UserDTO> getUsersSearched(string username)
+        {
+            var users = _userInterface.getSearchedUser(username);
+            if (users == null)
+            {
+                return null;
+            }
+            return users.Select(UserDTO.MapToDto).ToList();
+        }
     }
 }

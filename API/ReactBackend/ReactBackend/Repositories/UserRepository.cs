@@ -88,5 +88,34 @@ namespace ReactBackend.Repositories
             }
         }
 
+        public List<User> getSearchedUser(string Username)
+        {
+            List<User> searchedUser = new List<User>();
+
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = @"SELECT u.UserID, u.Username, u.Bio, u.PFP
+                                FROM tbl_User u
+                                WHERE u.Username LIKE @username";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@username", '%' + Username + "%");
+
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    searchedUser.Add(new User
+                    {
+                        ID = reader.GetInt32(0),
+                        Username = reader.GetString(1),
+                        Bio = reader.GetString(2),
+                        PFP = reader["PFP"] as byte[],
+                    });
+                }
+                return searchedUser;
+            }
+        }
+
     }
 }

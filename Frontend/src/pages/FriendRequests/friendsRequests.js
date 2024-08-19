@@ -34,7 +34,7 @@ function FriendRequests({ isOpen }) {
 
   useEffect(() => {
     fetchFriendsRQ();
-  }, [userId]);
+  },);
 
   const acceptRequest = async (fromId, toId) => {
     try {

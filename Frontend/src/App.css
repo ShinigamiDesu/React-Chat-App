@@ -109,6 +109,17 @@ main {
   opacity: 0;
 }
 
+.logout-item-text-open {
+  font-weight: 200;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.logout-item-text-close {
+  display: none;
+  opacity: 0;
+}
+
 .active-item-link {
   background-color: rgb(50,50,50);
   display: flex;
@@ -130,6 +141,14 @@ main {
 
 .logout-item-close {
   margin-top: 490px; /* Use auto to push it to the bottom */
+}
+
+.logout-item-icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 50px;
+  margin-top: -10px;
+  margin-left: -10px;
 }
 
 

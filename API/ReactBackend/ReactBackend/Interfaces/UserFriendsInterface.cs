@@ -10,5 +10,6 @@ namespace ReactBackend.Interfaces
         bool deleteFriendRequest(int fromID, int toID);
         bool insertFriend(int fromID, int toID);
         bool removeFriend(int userID, int friendID);
+        bool addFriend(int userID, int friendID);
     }
 }
