@@ -4,6 +4,16 @@
     padding-left: 10px;
     padding-top: 5px;
     height: 100vh;
+    width: calc(100vw - 260px);
+}
+
+.friends-container-close {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-top: 5px;
+    height: 100vh;
+    width: calc(100vw - 100px);
 }
 
 .friend-separator {
@@ -36,6 +46,7 @@
     margin-bottom: 10px; /* Added margin to separate items */
     border-radius: 100px;
     height: 150px;
+    width: calc(100% - 10px);
 }
 
 .friend-item-pfp {
@@ -84,7 +95,7 @@
     padding-right: 10px;
     cursor: pointer;
     margin-top: 35px;
-    margin-left: 290px;
+    margin-left: auto;
     padding-left: 30px;
     transition: width 0.5s ease;
 }
@@ -102,7 +113,7 @@
     padding-right: 10px;
     cursor: pointer;
     margin-top: 35px;
-    margin-left: 460px;
+    margin-left: auto;
     padding-left: 30px;
     transition: width 0.5s ease;
 }

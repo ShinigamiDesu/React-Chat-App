@@ -33,7 +33,6 @@ function SearchUser({isOpen}) {
         console.log('Something Went Wrong, Catch');
       }
     };
-
     fetchFriends();
   }, [userId]);
 
@@ -72,7 +71,7 @@ function SearchUser({isOpen}) {
         alert('A Friend Request Has Been Sent To: ' + friend)
       }
       else if(response.status === 400){
-        console.log('Friend Was Not Added');
+        alert(' A Friend Request is Already in Place ');
       }
     }
     catch(error){
@@ -85,6 +84,24 @@ function SearchUser({isOpen}) {
     localStorage.setItem('ChatUsername', username);
     localStorage.setItem('Chatpfp', pfp);
     navigate('/user-chat');
+  }
+
+  const addRecentChat = async (friendId) =>{
+    try{
+      const response = await fetch(`https://localhost:7245/api/UserChat/newRecentChat/${userId}/${friendId}`,{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        }
+      });
+
+      if(response.ok){
+        console.log('Success');
+      }
+    }
+    catch(error){
+      console.log('Catch Went Wrong');
+    }
   }
 
   return (
@@ -112,14 +129,17 @@ function SearchUser({isOpen}) {
                 {user.username !== usernameUser ? (
                   <div className={isOpen ? 'btn-div-open' :  'btn-div-close'}>
                     {!friends.includes(user.id) && (
-                      <button className='search-btnRQ'>
+                      <button className='search-btnRQ' onClick={() => sendFriendRequest(user.username, user.id)}>
                         <img src={Add} alt='' className='search-btnRQIcon'/>
-                        <p className="search-btnRQText" onClick={() => sendFriendRequest(user.username, user.id)}>Send Request</p>
+                        <p className="search-btnRQText">Send Request</p>
                       </button>
                     )}
-                    <button className='search-btnMSG'>
+                    <button className='search-btnMSG' onClick={() => {
+                                                     addRecentChat(user.id);
+                                                     navigateToChat(user.id, user.username, user.pfp);
+                                                    }}>
                       <img src={Chat} alt='' className='search-btnMSGIcon'/>
-                      <p className="search-btnMSGText" onClick={() => navigateToChat(user.id, user.username, user.pfp)}>Send Message</p>
+                      <p className="search-btnMSGText">Send Message</p>
                     </button>
                   </div>
                 ) : (

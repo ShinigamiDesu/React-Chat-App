@@ -47,7 +47,7 @@ function Home({isOpen}) {
     }
 
   return (
-    <div className='home-container'>
+    <div className={isOpen ? 'home-container' : 'home-container-close'}>
       <h1 className='home-title'>{hasChats ? `Your Recent Chats (${chats.length}):`  : 'You Have No Recent Chats'}</h1>
       <div className="separator"></div>
       {hasChats && (

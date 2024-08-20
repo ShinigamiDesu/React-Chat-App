@@ -62,7 +62,7 @@ function Friends({ isOpen }) {
   };
 
   return (
-    <div className="friends-container-main">
+    <div className={isOpen ? "friends-container-main" : "friends-container-close"}>
       <h1 className='friends-title'>
         {hasFriends ? `Your Friends (${friends.length}):` : 'You have no friends'}
       </h1>

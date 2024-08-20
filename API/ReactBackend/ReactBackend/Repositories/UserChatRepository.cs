@@ -17,7 +17,7 @@ namespace ReactBackend.Repositories
         {
             List<User> recentChats = new List<User>();
 
-            using(SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
             {
                 string query = @"SELECT u.UserID, u.Username, u.Bio, u.PFP, u.Status
                                  FROM tbl_User u
@@ -73,6 +73,83 @@ namespace ReactBackend.Repositories
                     });
                 }
                 return pvtMessages;
+            }
+        }
+
+        public bool checkRecentChat(int userID, int friendID)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "SELECT * FROM tbl_RecentChats WHERE (FromID = @userID AND ToID = @friendID) OR (FromID = @friendID AND ToID = @userID)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@friendID", friendID);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                try
+                {
+                    con.Open();
+                    SqlDataReader r = cmd.ExecuteReader();
+                    return r.HasRows; // Returns true if any rows exist
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+        }
+
+        public bool addRecentChat(int userID, int friendID)
+        {
+            if (!checkRecentChat(userID, friendID))
+            {
+                using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+                {
+                    string query = "INSERT INTO tbl_RecentChats(FromID, ToID) VALUES (@userID, @friendID)";
+                    SqlCommand cmd = new SqlCommand(@query, con);
+                    cmd.Parameters.AddWithValue("@friendID", friendID);
+                    cmd.Parameters.AddWithValue("@userID", userID);
+                    try
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Recent Chat Exists");
+                return false;
+            }
+        }
+
+        public bool addTextMessage(int userID, int friendID, string text)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "INSERT INTO tbl_Messages(SenderID, ReceiverID, MessageText) VALUES (@userID, @friendID, @text)";
+                SqlCommand cmd = new SqlCommand(@query, con);
+                cmd.Parameters.AddWithValue("@friendID", friendID);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@text", text);
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
             }
         }
     }

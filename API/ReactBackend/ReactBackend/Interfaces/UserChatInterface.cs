@@ -7,5 +7,11 @@ namespace ReactBackend.Interfaces
         List<User> getRecentChats(int userId);
 
         List<Messages> getPVTMessages(int userId, int friendId);
+
+        bool checkRecentChat(int userId, int friendId);
+
+        bool addRecentChat(int userID, int friendID);
+
+        bool addTextMessage(int userID, int friendID, string text);
     }
 }

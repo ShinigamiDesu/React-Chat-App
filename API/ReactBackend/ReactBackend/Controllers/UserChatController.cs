@@ -40,5 +40,27 @@ namespace ReactBackend.Controllers
             return NotFound("No Messages Where Found");
         }
 
+        [HttpPost]
+        [Route("newRecentChat/{userId}/{friendId}")]
+        public IActionResult addRecentChat(int userId, int friendId)
+        {
+            if (_userChatService.newRecentChat(userId, friendId))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("newMessage/{userId}/{friendId}/{message}")]
+        public IActionResult addMessage(int userId, int friendId, string message)
+        {
+            if (_userChatService.newMessage(userId, friendId, message))
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
     }
 }

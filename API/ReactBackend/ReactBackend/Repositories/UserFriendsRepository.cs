@@ -154,6 +154,28 @@ namespace ReactBackend.Repositories
             }
         }
 
+        public bool checkRequest(int userID, int friendID)
+        {
+            using (SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
+            {
+                string query = "SELECT * FROM tbl_FriendRequests WHERE (Request_FromID = @userID AND Request_ToID = @friendID) OR (Request_FromID = @friendID AND Request_ToID = @userID)";
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@friendID", friendID);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                try
+                {
+                    con.Open();
+                    SqlDataReader r = cmd.ExecuteReader();
+                    return r.HasRows; // Returns true if any rows exist
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+        }
+
         public bool addFriend(int userID, int friendID)
         {
             using(SqlConnection con = new SqlConnection(_configuration.GetConnectionString("ChatApp")))
@@ -164,10 +186,18 @@ namespace ReactBackend.Repositories
                 cmd.Parameters.AddWithValue("@friendid", friendID);
                 try
                 {
-                    con.Open ();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    return true;
+                    if(!checkRequest(userID, friendID))
+                    {
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
                 }
                 catch (Exception ex)
                 {

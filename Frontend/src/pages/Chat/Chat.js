@@ -8,6 +8,7 @@ function Chat({isOpen}) {
   const username = localStorage.getItem('ChatUsername');
   const Chatpfp = localStorage.getItem('Chatpfp');
   const [messages, setMessages] = useState([]);
+  const [textMessage, setTextMessage] = useState('');
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -22,7 +23,7 @@ function Chat({isOpen}) {
           const data = await response.json();
           setMessages(data);
         } else if (response.status === 404) {
-          console.log('Failed to fetch messages');
+          console.log('No Messages Between Users');
         } else {
           console.log('Something went wrong');
         }
@@ -32,6 +33,26 @@ function Chat({isOpen}) {
     };
     fetchMessages();
   }, [userId, friendId]);
+
+  const sendMessage = async () =>{
+    try{
+      const response = await fetch(`https://localhost:7245/api/UserChat/newMessage/${userId}/${friendId}/${textMessage}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if(response.ok){
+        setTextMessage(''); // Clear the input field after sending the message
+      }
+      else{
+        console.log('Message Not Sent');
+      }
+    }
+    catch(error){
+      console.log('Catch Error:', error);
+    }
+  }
 
   return (
     <div className={isOpen ? 'userChat-main-container' : 'userChat-main-close'}>
@@ -55,8 +76,18 @@ function Chat({isOpen}) {
         ))}
       </div>
       <div className='userChat-Bottom'>
-        <input className={isOpen ? "userChat-input-open" : "userChat-input-close"} placeholder='type your message here . . .' />
-        <img src={Send} alt='' className='userChat-sendIMG' />
+        <input
+          className={isOpen ? "userChat-input-open" : "userChat-input-close"}
+          placeholder='type your message here . . .'
+          value={textMessage}
+          onChange={(e) => setTextMessage(e.target.value)}
+        />
+        <img
+          src={Send}
+          alt=''
+          className='userChat-sendIMG'
+          onClick={sendMessage} // Directly reference the function here
+        />
       </div>
     </div>
   );

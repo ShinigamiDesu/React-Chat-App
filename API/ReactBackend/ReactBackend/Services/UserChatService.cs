@@ -31,5 +31,23 @@ namespace ReactBackend.Services
             }
             return messages.Select(MessagesDTO.MapToDto).ToList();
         }
+
+        public bool newRecentChat(int userID, int friendID)
+        {
+            if(_userChatInterface.addRecentChat(userID, friendID))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool newMessage(int userID, int friendID, string text)
+        {
+            if(_userChatInterface.addTextMessage(userID, friendID, text))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
