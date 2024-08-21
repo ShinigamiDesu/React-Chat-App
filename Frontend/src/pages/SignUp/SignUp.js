@@ -31,7 +31,7 @@ function SignUp() {
     formData.append('Bio', bio);  // Include the bio field in the form data
 
     try {
-      const response = await fetch('https://localhost:7245/api/User/Registration', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/User/Registration`, {
         method: 'POST',
         body: formData,
       });

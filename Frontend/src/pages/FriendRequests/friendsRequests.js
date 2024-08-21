@@ -58,7 +58,7 @@ function FriendRequests({ isOpen }) {
 
   const rejectRequest = async (fromId, toId) => {
     try {
-      const response = await fetch(`https://localhost:7245/api/UserFriends/DeleteRQ/${fromId}/${toId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/UserFriends/DeleteRQ/${fromId}/${toId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

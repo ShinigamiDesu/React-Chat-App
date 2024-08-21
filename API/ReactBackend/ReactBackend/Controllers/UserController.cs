@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using ReactBackend.DTO;
 using ReactBackend.Entities;
 using ReactBackend.Services;
 using System.Data.SqlClient;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ReactBackend.Controllers
@@ -43,10 +47,37 @@ namespace ReactBackend.Controllers
             var userDTO = _userService.LoginUser(login.Username, login.Password);
             if (userDTO != null)
             {
-                return Ok(userDTO);
+                // Generate JWT token
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]); // Use the same key as in Startup
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                new Claim(ClaimTypes.Name, userDTO.Username),
+                new Claim(ClaimTypes.NameIdentifier, userDTO.ID.ToString())
+                    }),
+                    Expires = DateTime.UtcNow.AddHours(1), // Set the token expiration time
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                // Return the token along with the user information (ID, Username, PFP)
+                return Ok(new
+                {
+                    Token = tokenString,
+                    User = new
+                    {
+                        userDTO.ID,
+                        userDTO.Username,
+                        userDTO.PFP
+                    }
+                });
             }
             return Unauthorized(new { message = "Invalid username or password" });
         }
+
 
         [HttpGet]
         [Route("GetUsers/{username}")]

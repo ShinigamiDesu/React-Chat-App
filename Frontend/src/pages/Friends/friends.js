@@ -40,7 +40,7 @@ function Friends({ isOpen }) {
 
   const removeFriend = async (userId, friendId) => {
     try{
-      const response = await fetch(`https://localhost:7245/api/UserFriends/DeleteFriend/${userId}/${friendId}`,{
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/UserFriends/DeleteFriend/${userId}/${friendId}`,{
         method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'

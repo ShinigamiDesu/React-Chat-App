@@ -12,33 +12,40 @@ const Login = () => {
             alert("Please fill in all fields.");
             return;
         }
-
+    
         // Create the login data object
         const loginData = {
             Username: username,
             Password: password
         };
-
+    
         try {
             // Send the login request
-            const response = await fetch('https://localhost:7245/api/User/Login', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/User/Login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(loginData)
             });
-
+    
             // Handle the response
             if (response.ok) {
                 const data = await response.json();
-                localStorage.setItem('userId', data.id);
-                localStorage.setItem('pfp', data.pfp);
-                localStorage.setItem('username', data.username);
-                alert(`Login successful! Welcome ${data.username}`);
+                // Access the nested properties correctly
+                const user = data.user;
+                localStorage.setItem("token", data.token);
+                localStorage.setItem('userId', user.id);
+                localStorage.setItem('pfp', user.pfp);
+                localStorage.setItem('username', user.username);
+    
+                alert(`Login successful! Welcome ${user.username}`);
                 navigate('/home'); // Redirect to the homepage
-            } else {
+            } else if(response.status === 401){
                 // Handle login failure
+                alert('Incorrect Username or password');
+            }
+            else{
                 alert('Login failed. Please try again.');
             }
         } catch (error) {

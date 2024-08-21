@@ -11,33 +11,37 @@ function Home({isOpen}) {
 
   useEffect(() => {
     const fetchChats = async () => {
-      try{
-        const response = await fetch(`https://localhost:7245/api/UserChat/GetChats/${userId}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
+        const token = localStorage.getItem('token');
 
-        if(response.ok){
-          const data = await response.json();
-          console.log('fetched chats');
-          setChats(data);
+        if (!token) {
+            navigate('/login');
+            return;
         }
-        else if(response.status === 404){
-          setHasChats(false);
+
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/UserChat/GetChats/${userId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setChats(data);
+            } else if (response.status === 404) {
+                setHasChats(false);
+            } else {
+                console.error('Failed to fetch chats');
+            }
+        } catch (error) {
+            console.log('Catch Error: ' + error);
         }
-        else {
-          console.error('Failed to fetch chats');
-        }
-      }
-      catch(error){
-        console.log('Catch Error: ' + error);
-      }
     }
-    
+
     fetchChats();
-  }, [userId]);
+}, [userId, navigate]);
+
 
     const navigateToChat = (friendId, username, pfp) => {
       localStorage.setItem('friendId', friendId);

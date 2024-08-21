@@ -88,7 +88,7 @@ function SearchUser({isOpen}) {
 
   const addRecentChat = async (friendId) =>{
     try{
-      const response = await fetch(`https://localhost:7245/api/UserChat/newRecentChat/${userId}/${friendId}`,{
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/UserChat/newRecentChat/${userId}/${friendId}`,{
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',

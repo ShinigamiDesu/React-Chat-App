@@ -13,7 +13,7 @@ function Chat({isOpen}) {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`https://localhost:7245/api/UserChat/GetMessages/${userId}/${friendId}`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/UserChat/GetMessages/${userId}/${friendId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

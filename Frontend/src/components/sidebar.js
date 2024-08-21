@@ -15,8 +15,21 @@ function Sidebar({ children }) {
     const [currMenu, setCurrMenu] = useState("");
 
     const handleLogout = () => {
+        // Clear localStorage
+        localStorage.removeItem('token');
         localStorage.removeItem('userId');
+        localStorage.removeItem('pfp');
+        localStorage.removeItem('username');
+        localStorage.removeItem('friendId');
+        localStorage.removeItem('ChatUsername');
+        localStorage.removeItem('Chatpfp');
+
+        // Clear any additional state or caches that could hold user data
+        setCurrMenu(""); // Clear the current menu selection
+
+        // Redirect to login
         navigate('/login');
+        window.location.reload();  // This forces a reload, ensuring state is refreshed
     };
 
     const menuItem = [

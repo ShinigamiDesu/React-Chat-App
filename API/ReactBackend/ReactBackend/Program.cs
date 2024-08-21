@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using ReactBackend.Interfaces;
 using ReactBackend.Repositories;
 using ReactBackend.Services;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +13,25 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3001")
+            builder.WithOrigins("http://localhost:3003")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
 });
 
+//JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
 
 builder.Services.AddScoped<UserInterface, UserRepository>();
 builder.Services.AddScoped<UserFriendsInterface, UserFriendRepository>();
@@ -53,3 +69,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
