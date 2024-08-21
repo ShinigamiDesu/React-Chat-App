@@ -136,11 +136,11 @@ main {
 }
 
 .logout-item-open {
-  margin-top: 490px;
+  margin-top: 530px;
 }
 
 .logout-item-close {
-  margin-top: 490px; /* Use auto to push it to the bottom */
+  margin-top: 530px; /* Use auto to push it to the bottom */
 }
 
 .logout-item-icon{

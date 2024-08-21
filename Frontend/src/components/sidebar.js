@@ -3,7 +3,6 @@ import Bars from '../assets/bars.png';
 import HomeIcon from '../assets/home.png';
 import FriendsIcon from '../assets/friends.png';
 import FriendRequest from '../assets/heart.png';
-import GroupChats from '../assets/group.png';
 import Search from '../assets/search.png';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +34,6 @@ function Sidebar({ children }) {
             path: "/friend-requests",
             name: "Friend Requests",
             icon: FriendRequest
-        },
-        {
-            path: "/group-chats",
-            name: "Group Chats",
-            icon: GroupChats
         },
         {
             path: "/search-users",

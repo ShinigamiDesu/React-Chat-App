@@ -5,7 +5,6 @@ import Home from './pages/Home/home';
 import Friends from './pages/Friends/friends';
 import Login from './pages/Login/login';
 import FriendRequests from './pages/FriendRequests/friendsRequests';
-import GroupChats from './pages/GroupChats/groupChats';
 import Search from './pages/SearchUser/searchUser';
 import SignUp from './pages/SignUp/SignUp';
 import Chat from './pages/Chat/Chat';
@@ -20,7 +19,6 @@ function App() {
                 <Route path="/home" element={<Sidebar><Home /></Sidebar>} />
                 <Route path="/friends" element={<Sidebar><Friends /></Sidebar>} />
                 <Route path="/friend-requests" element={<Sidebar><FriendRequests /></Sidebar>} />
-                <Route path="/group-chats" element={<Sidebar><GroupChats /></Sidebar>} />
                 <Route path="/search-users" element={<Sidebar><Search /></Sidebar>} />
                 <Route path="/user-chat" element={<Sidebar><Chat /></Sidebar>} />
                 <Route path="/login" element={<Login />} />
